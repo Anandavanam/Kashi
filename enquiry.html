@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Room Enquiry | Anandavanam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --gold:#c9952a;
+    --gold-light:#e8b84b;
+    --dark:#0e0b07;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.70),
+        rgba(0,0,0,0.70)
+    ),
+    url("background.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px 20px;
+}
+
+.form-container{
+    width:100%;
+    max-width:750px;
+
+    background:rgba(255,255,255,0.96);
+
+    backdrop-filter:blur(10px);
+
+    padding:45px;
+
+    border-radius:20px;
+
+    border-top:5px solid var(--gold);
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.35);
+}
+
+/* HEADER */
+
+.hero-header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:3.2rem;
+    font-weight:600;
+    color:var(--gold);
+    letter-spacing:2px;
+}
+
+.tagline{
+    margin-top:8px;
+    color:#666;
+    font-size:1rem;
+}
+
+.divider{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    margin:25px 0;
+    color:var(--gold);
+}
+
+.divider span{
+    width:70px;
+    height:1px;
+    background:var(--gold);
+}
+
+.hero-header h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:3rem;
+    color:var(--gold);
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#777;
+    line-height:1.6;
+}
+
+/* FORM */
+
+.form-group{
+    margin-bottom:16px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#444;
+    font-size:14px;
+    font-weight:500;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:14px;
+
+    border:1px solid #ddd;
+    border-radius:10px;
+
+    font-size:15px;
+    font-family:inherit;
+
+    transition:0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(201,149,42,0.15);
+}
+
+.date-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+button{
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+    border-radius:10px;
+
+    background:linear-gradient(
+        135deg,
+        var(--gold),
+        var(--gold-light)
+    );
+
+    color:white;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 25px rgba(201,149,42,0.4);
+}
+
+.back-home{
+    text-align:center;
+    margin-top:20px;
+}
+
+.back-home a{
+    color:var(--gold);
+    text-decoration:none;
+    font-size:14px;
+}
+
+.back-home a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:768px){
+
+    .form-container{
+        padding:30px;
+    }
+
+    .logo{
+        font-size:2.4rem;
+    }
+
+    .hero-header h1{
+        font-size:2.2rem;
+    }
+
+    .date-row{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="form-container">
+
+    <div class="hero-header">
+
+        <div class="logo"> ANANDAVANAM</div>
+
+        <div class="tagline">
+            Where Divinity Meets Hospitality
+        </div>
+
+        <div class="divider">
+            <span></span>
+            ◆
+            <span></span>
+        </div>
+
+        <h1>Room Enquiry</h1>
+
+        <p class="subtitle">
+            Planning your stay in Varanasi? Fill out the form below and our team will get in touch with you shortly.
+        </p>
+
+    </div>
+
+    <form action="https://formsubmit.co/anandavanam.kashi@gmail.com" method="POST">
+
+        <input type="hidden" name="_subject" value="New Room Enquiry - Anandavanam">
+
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="Name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="Phone" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="Email" required>
+        </div>
+
+        <div class="date-row">
+
+            <div class="form-group">
+                <label>Check-In Date</label>
+                <input type="date" name="Check-In">
+            </div>
+
+            <div class="form-group">
+                <label>Check-Out Date</label>
+                <input type="date" name="Check-Out">
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Number of Guests</label>
+
+            <select name="Guests">
+
+                <option value="">Select Guests</option>
+
+                <option>1 Guest</option>
+                <option>2 Guests</option>
+                <option>3 Guests</option>
+                <option>4 Guests</option>
+                <option>5 Guests</option>
+                <option>More than 5 Guests</option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Preferred Room Type</label>
+
+            <select name="Room Type">
+
+                <option value="">Select Room Type</option>
+
+                <option>Deluxe Twin Room</option>
+                <option>Premium King Room</option>
+                <option>Triple Bed Suite</option>
+                <option>Superior Room</option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Special Requirements</label>
+
+            <textarea
+                name="Message"
+                rows="5"
+                placeholder="Airport pickup, early check-in, extra beds, etc."></textarea>
+        </div>
+
+        <button type="submit">
+            Send Enquiry
+        </button>
+
+    </form>
+
+    <div class="back-home">
+        <a href="index.html">← Back to Homepage</a>
+    </div>
+
+</div>
+
+</body>
+</html>
