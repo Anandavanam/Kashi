@@ -262,7 +262,7 @@ button:hover{
 
         <div class="form-group">
             <label>Phone Number</label>
-            <input type="tel" name="Phone" required>
+            <input type="tel" name="Phone" required maxlength="10" pattern="[0-9]{10}">
         </div>
 
         <div class="form-group">
@@ -274,12 +274,12 @@ button:hover{
 
             <div class="form-group">
                 <label>Check-In Date</label>
-                <input type="date" name="Check-In">
+                <input type="date" name="Check-In"  id="bookingDate">
             </div>
 
             <div class="form-group">
                 <label>Check-Out Date</label>
-                <input type="date" name="Check-Out">
+                <input type="date" name="Check-Out"  id="bookingDate">
             </div>
 
         </div>
@@ -336,6 +336,13 @@ button:hover{
     </div>
 
 </div>
+<script>
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    document.getElementById("bookingDate").min =
+        tomorrow.toLocaleDateString('en-CA');
+</script>
 
 </body>
 </html>
