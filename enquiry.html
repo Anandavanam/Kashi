@@ -271,16 +271,17 @@ button:hover{
         </div>
 
         <div class="date-row">
+                    <div class="form-group">
+            <label>Check-In Date</label>
+            <input type="date" name="checkIn" id="checkInDate">
+        </div>
 
-            <div class="form-group">
-                <label>Check-In Date</label>
-                <input type="date" name="Check-In">
-            </div>
+        <div class="form-group">
+            <label>Check-Out Date</label>
+            <input type="date" name="checkOut" id="checkOutDate">
+        </div>
 
-            <div class="form-group">
-                <label>Check-Out Date</label>
-                <input type="date" name="Check-Out">
-            </div>
+            
 
         </div>
 
@@ -336,6 +337,35 @@ button:hover{
     </div>
 
 </div>
+<script>
+// Get today's date in YYYY-MM-DD format
+const today = new Date().toISOString().split("T")[0];
 
+// Get the input elements
+const checkIn = document.getElementById("checkInDate");
+const checkOut = document.getElementById("checkOutDate");
+
+// Prevent selecting dates before today
+checkIn.min = today;
+checkOut.min = today;
+
+// Update checkout date whenever check-in changes
+checkIn.addEventListener("change", function () {
+    if (!this.value) return;
+
+    // Calculate the minimum checkout date (next day)
+    const selectedDate = new Date(this.value);
+    selectedDate.setDate(selectedDate.getDate() + 1);
+
+    const minCheckout = selectedDate.toISOString().split("T")[0];
+
+    checkOut.min = minCheckout;
+
+    // Clear checkout if it's before the new minimum
+    if (checkOut.value && checkOut.value < minCheckout) {
+        checkOut.value = "";
+    }
+});
+</script>
 </body>
 </html>
