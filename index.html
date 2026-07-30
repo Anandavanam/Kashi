@@ -1,4 +1,3 @@
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -16,100 +15,157 @@ nav{
   background:rgba(255,255,253,0.97);backdrop-filter:blur(16px);
   border-bottom:1px solid #e8dfc8;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 2.5rem;height:60px;
+  padding:0 2.5rem;height:82px;gap:1.5rem;
 }
-.nav-logo{
-  font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;
-  color:var(--gold);letter-spacing:3px;display:flex;align-items:center;gap:8px;
-}
-.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
-.nav-links a{font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .2s}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;flex:1}
+.nav-links.nav-links-right{justify-content:flex-end}
+.nav-links a{font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:var(--gold)}
+
+/* Center logo block, matching reference layout */
+.nav-logo{
+  flex:0 0 auto;display:flex;flex-direction:column;align-items:center;
+  gap:2px;text-align:center;
+}
+.nav-logo-img{
+  /* EDIT: replace src on the <img class="nav-logo-img"> tag in the HTML to swap the logo mark */
+  height:34px;width:auto;object-fit:contain;display:block;
+}
+.nav-logo-text{
+  font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;
+  color:var(--dark);letter-spacing:3px;line-height:1;
+}
+.nav-logo-sub{
+  font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);
+}
+
+.nav-signin{
+  border:1.5px solid var(--gold3);border-radius:3px;
+  padding:8px 16px !important;color:var(--mid) !important;
+}
+.nav-signin:hover{border-color:var(--gold);color:var(--gold) !important}
+
 .nav-book{
   background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#fff;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;
-  padding:8px 18px;border-radius:3px;text-decoration:none;transition:opacity .2s;
+  color:#fff !important;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;
+  padding:10px 20px;border-radius:3px;text-decoration:none;transition:opacity .2s;
 }
-.nav-book:hover{opacity:.85}
+.nav-book:hover{opacity:.85;color:#fff !important}
 
-/* ── HERO ── */
-.hero{
-  position:relative;height:520px;overflow:hidden;
-  background:#0e0b07;
-  display:flex;align-items:center;justify-content:center;
+/* HERO SLIDESHOW */
+.hero {
+  position: relative; width: 100%; height: 92vh;
+  overflow: hidden; background: #0a0804;
 }
-.hero-img{
-  position:absolute;inset:0;
-  background-image:url('/mnt/user-data/uploads/1000062690.jpg');
-  background-size:cover;background-position:center;
-  opacity:.38;
+.hero-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 1.4s ease;
 }
-.hero-vignette{
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse at center,transparent 30%,rgba(10,8,4,.7) 100%);
+.hero-slide.active { opacity: 1; }
+.hero-slide img{
+  /* EDIT: swap the src attribute on these <img> tags to change hero photos */
+  width: 100%; height: 100%; object-fit: cover; display: block;
 }
-.hero-lines{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:
-    repeating-linear-gradient(0deg,transparent,transparent 44px,rgba(201,149,42,.07) 44px,rgba(201,149,42,.07) 45px),
-    repeating-linear-gradient(90deg,transparent,transparent 44px,rgba(201,149,42,.07) 44px,rgba(201,149,42,.07) 45px);
+.hero-slide::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.25) 0%, rgba(0,0,0,.45) 50%, rgba(0,0,0,.65) 100%);
 }
-.hero-glow{
-  position:absolute;width:320px;height:320px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,149,42,.22) 0%,transparent 70%);
-  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+/* arrow buttons */
+.hero-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 10; width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255,255,255,.3);
+  color: #fff; font-size: 1.2rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .25s;
 }
-.hero-content{
-  position:relative;z-index:3;text-align:center;padding:0 1.5rem;
+.hero-arrow:hover { background: rgba(255,255,255,.28); transform: translateY(-50%) scale(1.08); }
+.hero-arrow.prev { left: 24px; }
+.hero-arrow.next { right: 24px; }
+/* center content */
+.hero-content {
+  position: absolute; inset: 0; z-index: 5;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 0 2rem;
 }
-.hero-kicker{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:0.68rem;letter-spacing:5px;text-transform:uppercase;color:rgba(232,184,75,.85);
-  margin-bottom:1.2rem;
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; letter-spacing: 5px; text-transform: uppercase;
+  color: rgba(232,184,75,.9); margin-bottom: 1rem;
 }
-.hero-kicker-dot{width:4px;height:4px;background:var(--gold2);border-radius:50%}
-.hero-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:5rem;font-weight:300;color:#fff;
-  letter-spacing:10px;line-height:1;margin-bottom:.6rem;
-  text-shadow:0 2px 40px rgba(0,0,0,.5);
+.hero-kicker-dot { width: 4px; height: 4px; background: var(--gold2); border-radius: 50%; }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem; font-weight: 300; color: #fff;
+  letter-spacing: 10px; line-height: 1;
+  margin-bottom: .5rem; text-shadow: 0 2px 40px rgba(0,0,0,.5);
+  transition: opacity .6s ease;
 }
-.hero-italic{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.15rem;font-style:italic;font-weight:300;
-  color:rgba(255,255,255,.55);letter-spacing:1px;margin-bottom:2rem;
+.hero-slide-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,.85); letter-spacing: 1px;
+  margin-bottom: 2rem; text-shadow: 0 1px 12px rgba(0,0,0,.5);
+  transition: opacity .6s ease;
 }
-.hero-ornament{
-  display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:1.8rem;
+.hero-ctas {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; flex-wrap: wrap;
 }
-.orn-line{width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--gold2))}
-.orn-line.r{background:linear-gradient(90deg,var(--gold2),transparent)}
-.orn-diamond{
-  width:7px;height:7px;background:var(--gold2);transform:rotate(45deg);
-  box-shadow:0 0 8px rgba(232,184,75,.6);
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #fff; font-size: 0.82rem; letter-spacing: 3px; text-transform: uppercase;
+  padding: 15px 36px; border-radius: 50px; text-decoration: none;
+  border: none; cursor: pointer; transition: all .25s;
+  box-shadow: 0 6px 24px rgba(201,149,42,.5);
 }
-.hero-ctas{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:7px;
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(201,149,42,.6); }
+.btn-mmt {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.12); backdrop-filter: blur(8px);
+  color: #fff; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+  padding: 14px 28px; border-radius: 50px; text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,.35); cursor: pointer; transition: all .25s;
+}
+.btn-mmt:hover { background: rgba(255,255,255,.22); transform: translateY(-3px); }
+.mmt-logo { background: #d63b8f; color: #fff; font-size: 0.6rem; font-weight: 700; padding: 2px 5px; border-radius: 2px; }
+
+/* Big single pill CTA, styled after the reference "BOOK NOW" button */
+.hero-headline{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  color:#fff;text-align:center;line-height:1.15;
+  text-shadow:0 2px 30px rgba(0,0,0,.5);
+}
+.hero-headline .line1{
+  display:block;font-size:2.6rem;letter-spacing:3px;text-transform:uppercase;
+}
+.hero-headline .line2{
+  display:block;font-size:1.9rem;font-style:italic;font-weight:400;margin-top:.3rem;
+}
+.btn-book-big{
+  display:inline-flex;align-items:center;justify-content:center;
   background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#fff;font-size:0.75rem;letter-spacing:2.5px;text-transform:uppercase;
-  padding:13px 28px;border-radius:3px;text-decoration:none;
+  color:#fff;font-family:'Inter',sans-serif;font-weight:600;
+  font-size:1rem;letter-spacing:3px;text-transform:uppercase;
+  padding:18px 54px;border-radius:50px;text-decoration:none;
   border:none;cursor:pointer;transition:all .25s;
-  box-shadow:0 4px 20px rgba(201,149,42,.4);
+  box-shadow:0 10px 30px rgba(201,149,42,.5);
+  margin-top:2rem;
 }
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,149,42,.5)}
-.btn-mmt{
-  display:inline-flex;align-items:center;gap:8px;
-  background:#fff;
-  color:#d63b8f;font-size:0.75rem;letter-spacing:1.5px;text-transform:uppercase;
-  padding:12px 22px;border-radius:3px;text-decoration:none;
-  border:1.5px solid #d63b8f;cursor:pointer;transition:all .25s;font-weight:500;
+.btn-book-big:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(201,149,42,.6)}
+/* dot indicators */
+.hero-dots {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; z-index: 10;
 }
-.btn-mmt:hover{background:#fff0f7;transform:translateY(-2px);box-shadow:0 8px 24px rgba(214,59,143,.2)}
-.mmt-logo{
-  background:#d63b8f;color:#fff;font-size:0.6rem;font-weight:700;
-  padding:2px 5px;border-radius:2px;letter-spacing:.5px;
+.hero-dot {
+  width: 28px; height: 3px; border-radius: 2px;
+  background: rgba(255,255,255,.3); cursor: pointer; transition: all .3s;
 }
+.hero-dot.active { background: var(--gold2); width: 44px; }
 
 /* ── HERO BADGES ── */
 .hero-badges{
@@ -126,7 +182,10 @@ nav{
 .hbadge i{font-size:12px;color:var(--gold2)}
 
 /* ── SECTION HEADERS ── */
-.sec-wrap{max-width:920px;margin:0 auto}
+.sec-wrap{
+    max-width:1200px;
+    margin:0 auto;
+}
 .sec-tag{font-size:0.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
 .sec-title{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:400;color:var(--dark);margin-bottom:.4rem}
 .sec-rule{display:flex;align-items:center;gap:8px;margin-bottom:1.2rem}
@@ -202,17 +261,52 @@ p.body{font-size:0.9rem;line-height:1.9;color:var(--muted)}
 .amen-desc{font-size:0.82rem;line-height:1.75;color:var(--muted)}
 
 /* ── GALLERY ── */
-.gallery-section{padding:4rem 2.5rem;background:var(--card)}
 .gallery-grid{
-  display:grid;
-  grid-template-columns:1.6fr 1fr 1fr;
-  grid-template-rows:160px 160px;
-  gap:8px;margin-top:1.5rem;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-top:2rem;
 }
-.gal-item{border-radius:6px;overflow:hidden;cursor:pointer;background:#1e2a26}
-.gal-item:first-child{grid-row:span 2}
-.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s}
-.gal-item:hover img{transform:scale(1.07)}
+
+.gal-item{
+    border-radius:12px;
+    overflow:hidden;
+    height:260px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.35s;
+    cursor:pointer;
+}
+
+.gal-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .45s ease;
+}
+
+.gal-item:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+}
+
+.gal-item:hover img{
+    transform:scale(1.08);
+}
+@media (max-width:1000px){
+
+.gallery-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media (max-width:600px){
+
+.gallery-grid{
+    grid-template-columns:1fr;
+}
+
+}
 
 /* ── BOOK STRIP ── */
 .book-strip{
@@ -254,7 +348,17 @@ p.body{font-size:0.9rem;line-height:1.9;color:var(--muted)}
   background:linear-gradient(160deg,#0e0b07 0%,#1a1208 60%,#0d1e18 100%);
   padding:4rem 2.5rem;color:#fff;
 }
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.contact-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:4rem;
+    align-items:start;
+}
+.contact-grid > div:last-child{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+}
 .contact-section .sec-tag{color:var(--gold2)}
 .contact-section .sec-title{color:#fff}
 .contact-section .sec-rule-line{background:var(--gold2)}
@@ -273,6 +377,7 @@ p.body{font-size:0.9rem;line-height:1.9;color:var(--muted)}
 .corridor-wrap img{width:100%;height:180px;object-fit:cover;display:block}
 
 /* ── FOOTER ── */
+
 footer{
   background:#07060404;border-top:1px solid #1e1a14;
   padding:1.5rem 2.5rem;
@@ -306,13 +411,22 @@ footer{
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">ANANDAVANAM</div>
-  <ul class="nav-links">
+  <ul class="nav-links nav-links-left">
     <li><a href="#about-sec">About</a></li>
     <li><a href="#rooms-sec">Rooms</a></li>
     <li><a href="#amenities-sec">Amenities</a></li>
     <li><a href="#gallery-sec">Gallery</a></li>
-    <li><a href="#contact-sec">Contact</a></li>
+  </ul>
+
+  <div class="nav-logo">
+    <!-- EDIT: replace src below to swap the logo mark -->
+    <img class="nav-logo-img" src="/mnt/user-data/uploads/logo-mark.png" alt="Anandavanam Hotel logo" onerror="this.style.display='none'">
+    <span class="nav-logo-text">ANANDAVANAM</span>
+    <span class="nav-logo-sub">Hotel</span>
+  </div>
+
+  <ul class="nav-links nav-links-right">
+    
     <li>
       <a class="nav-book" href="https://www.makemytrip.com/hotels/hotel-listing/?checkin=06102026&checkout=06112026&locusId=CTVNS&locusType=city&city=CTVNS&country=IN&searchText=ANANDAVANAM%2C+Varanasi%2C+Uttar+Pradesh&roomStayQualifier=2e0e&_uCurrency=INR&reference=hotel&filterData=MERGE_PROPERTY_TYPE%7CHotel&type=city&rsc=1e2e0e&topHtlId=202606041602467703" target="_blank">
         Book Now
@@ -321,43 +435,48 @@ footer{
   </ul>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-img"></div>
-  <div class="hero-vignette"></div>
-  <div class="hero-lines"></div>
-  <div class="hero-glow"></div>
+  <!-- SLIDES: edit the src on each <img> below to swap hero photos -->
+  <div class="hero-slide active">
+    <img src="image.png" alt="Anandavanam Hotel view 1">
+  </div>
+  <div class="hero-slide">
+    <img src="new-Vishwanath-temple-BHU-Varanasi.webp" alt="Anandavanam Hotel view 2">
+  </div>
+  <div class="hero-slide">
+    <img src="visvanath_temple.jpg" alt="Anandavanam Hotel view 3">
+  </div>
+  <!-- <div class="hero-slide">
+    <img src="/mnt/user-data/uploads/1000062810.jpg" alt="Anandavanam Hotel view 4">
+  </div>
+  <div class="hero-slide">
+    <img src="/mnt/user-data/uploads/1000062822.jpg" alt="Anandavanam Hotel view 5">
+  </div> -->
+
+  <!-- ARROWS -->
+  <button class="hero-arrow prev" onclick="changeSlide(-1)" aria-label="Previous">&#8592;</button>
+  <button class="hero-arrow next" onclick="changeSlide(1)" aria-label="Next">&#8594;</button>
+
+  <!-- CENTER CONTENT -->
   <div class="hero-content">
-    <div class="hero-kicker">
-      <div class="hero-kicker-dot"></div>
-      Varanasi, India &nbsp;·&nbsp; 
-      <div class="hero-kicker-dot"></div>
+    <div class="hero-headline">
+      <span class="line1">Your Spiritual Retreat Starts here</span>
+      <span class="line2" id="heroSubtext">Unwind in elegance — Varanasi awaits</span>
     </div>
-    <div class="hero-title">ANANDAVANAM</div>
-    <div class="hero-italic">Where Divinity meets Hospitality</div>
-    <div class="hero-ornament">
-      <div class="orn-line"></div>
-      <div class="orn-diamond"></div>
-      <div class="orn-line r"></div>
-    </div>
-    <div class="hero-ctas">
-      <a class="btn-primary" href="#rooms-sec">
-        <i class="ti ti-bed" aria-hidden="true"></i> Explore Rooms
-      </a>
-      <a class="btn-mmt"
-        href="https://www.makemytrip.com/hotels/hotel-details/?hotelId=202606041602467703&_uCurrency=INR&checkin=06102026&checkout=06112026&city=CTVNS&country=IN&filterData=MERGE_PROPERTY_TYPE%7CHotel&lat=25.31048&lng=82.99767&locusId=CTVNS&locusType=city&rank=1&reference=hotel&roomStayQualifier=2e0e&rsc=1e2e0e&searchText=ANANDAVANAM%2C+Varanasi%2C+Uttar+Pradesh&topHtlId=202606041602467703&type=city&mtkeys=undefined&isPropSearch=T"
-        target="_blank">
-        <span class="mmt-logo">MMT</span>
-        Book on MakeMyTrip
-      </a>
-    </div>
-    <div class="hero-badges">
-      <div class="hbadge"><i class="ti ti-bed" aria-hidden="true"></i>Modern Rooms</div>
-      <div class="hbadge"><i class="ti ti-star" aria-hidden="true"></i>Premium Comfort</div>
-      <div class="hbadge"><i class="ti ti-wifi" aria-hidden="true"></i>Free Wi-Fi</div>
-      <div class="hbadge"><i class="ti ti-snowflake" aria-hidden="true"></i>Air Conditioned</div>
-      <div class="hbadge"><i class="ti ti-shield-check" aria-hidden="true"></i>Clean &amp; Hygienic</div>
-    </div>
+    <a class="btn-book-big"
+      href="https://www.makemytrip.com/hotels/hotel-listing/?checkin=06102026&checkout=06112026&locusId=CTVNS&locusType=city&city=CTVNS&country=IN&searchText=ANANDAVANAM%2C+Varanasi%2C+Uttar+Pradesh&roomStayQualifier=2e0e&_uCurrency=INR&reference=hotel&filterData=MERGE_PROPERTY_TYPE%7CHotel&type=city&rsc=1e2e0e&topHtlId=202606041602467703"
+      target="_blank">
+      Book Now
+    </a>
+  </div>
+
+  <!-- DOTS -->
+  <div class="hero-dots">
+    <div class="hero-dot active" onclick="goToSlide(0)"></div>
+    <div class="hero-dot" onclick="goToSlide(1)"></div>
+    <div class="hero-dot" onclick="goToSlide(2)"></div>
+    <div class="hero-dot" onclick="goToSlide(3)"></div>
+    <div class="hero-dot" onclick="goToSlide(4)"></div>
   </div>
 </div>
 
@@ -424,17 +543,34 @@ footer{
   </div>
 </section>
 <!-- AMENITIES -->
-<section class="amenities" id="amenities-sec">
-  <div style="max-width:900px;margin:0 auto">
-    <div class="section-tag">What we offer</div>
-    <div class="section-title">Hotel amenities</div>
+<section class="amenities-section" id="amenities-sec">
 
-    <div class="section-rule"></div>
-    <div class="amen-grid">
+    <div class="sec-wrap">
+
+        <div class="sec-tag">
+            What We Offer
+        </div>
+
+        <div class="sec-title">
+            Hotel Amenities
+        </div>
+
+        <div class="sec-rule">
+            <div class="sec-rule-line"></div>
+            <div class="sec-rule-dot"></div>
+        </div>
+
+        <div class="amen-grid">
+            <div class="amen-card">
+        <div class="amen-icon"><i class="ti ti-sailboat" aria-hidden="true"></i></div>
+        <div class="amen-title">One-Stop Pilgrimage & Travel Services</div>
+        <div class="amen-desc"> Experience a worry-free spiritual journey with end-to-end services, including pickup and drop, VIP Darshan assistance, local transportation, accommodation, and customized pilgrimage tours.</div>
+      </div>
       <div class="amen-card">
         <div class="amen-icon"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div>
         <div class="amen-title">Complimentary Meals</div>
-        <div class="amen-desc">Savor delicious vegetarian cuisine served daily, with select meals included in your room tariff for a hassle-free stay.</div>
+        <div class="amen-desc">Enjoy a complete culinary experience with freshly prepared vegetarian **breakfast, lunch, evening tea/coffee with snacks, and dinner** served daily. All meals are included in your room tariff, ensuring a comfortable, convenient, and hassle-free stay.
+</div>
       </div>
       
       <div class="amen-card">
@@ -462,6 +598,17 @@ footer{
         <div class="amen-title">Darshan arrangements</div>
         <div class="amen-desc"> Darshan and Rudra Abhishekam services also available</div>
       </div>
+      <div class="amen-card">
+        <div class="amen-icon"><i class="ti ti-sailboat" aria-hidden="true"></i></div>
+        <div class="amen-title">Valet Parking</div>
+        <div class="amen-desc"> Convenient valet parking services available for your convenience</div>
+      </div>
+      <div class="amen-card">
+        <div class="amen-icon"><i class="ti ti-sailboat" aria-hidden="true"></i></div>
+        <div class="amen-title">Airport Pick-up and drop services</div>
+        <div class="amen-desc"> Airport transfer services for a seamless journey</div>
+      </div>
+      
     </div>
   </div>
 </section>
@@ -470,9 +617,18 @@ footer{
 <!-- GALLERY -->
 <section class="gallery-section" id="gallery-sec">
   <div class="sec-wrap">
-    <div class="sec-tag">Inside Anandavanam</div>
-    <div class="sec-title">Gallery</div>
-    <div class="sec-rule"><div class="sec-rule-line"></div><div class="sec-rule-dot"></div></div>
+    <div class="sec-tag">
+    Explore Our Spaces
+</div>
+
+<div class="sec-title">
+    Hotel Gallery
+</div>
+
+<div class="sec-rule">
+    <div class="sec-rule-line"></div>
+    <div class="sec-rule-dot"></div>
+</div>
     <div class="gallery-grid">
       <div class="gal-item">
         <img src="room_with_decrp.jpeg" alt="Hotel corridor" onerror="this.style.background='#1e2a26'">
@@ -502,7 +658,8 @@ footer{
     </div>
   </div>
 </section>
-
+<br>
+<br>
 <!-- BOOK STRIP -->
 <div class="book-strip">
   <div class="book-strip-content">
@@ -520,143 +677,182 @@ footer{
 </div>
 
 <!-- CONTACT -->
+
+<!-- CONTACT -->
 <section class="contact-section" id="contact-sec">
-  <div class="sec-wrap">
+    <div class="sec-wrap">
 
-    <div class="contact-grid">
+        <div class="contact-grid">
 
-      <!-- LEFT COLUMN -->
-      <div>
-        <div class="sec-tag">Find us</div>
-        <div class="sec-title">Get in touch</div>
+            <!-- LEFT COLUMN -->
+            <div>
 
-        <div class="sec-rule">
-          <div class="sec-rule-line"></div>
-          <div class="sec-rule-dot"></div>
-        </div>
+                <div class="sec-tag">Find us</div>
+                <div class="sec-title">Get in touch</div>
 
-        <p class="body">
-          Located in the spiritual heart of Varanasi, a few minutes away from Kashi Viswanath
-        </p>
+                <div class="sec-rule">
+                    <div class="sec-rule-line"></div>
+                    <div class="sec-rule-dot"></div>
+                </div>
 
-        <div style="margin-top:1.2rem">
+                <p class="body">
+                    Located in the spiritual heart of Varanasi, just minutes from
+                    Kashi Vishwanath Temple.
+                </p>
 
-          <div class="citem">
-            <div class="cicon"><i class="ti ti-map-pin"></i></div>
-            <div class="ctext">
-              <strong>Address</strong>
-              <p>D. 54/70-A-2, Maulvibagh, Ramkund, Sidhgiribagh, Varanasi, Uttar Pradesh 221010</p>
+                <div style="margin-top:1.5rem">
+
+                    <div class="citem">
+                        <div class="cicon"><i class="ti ti-map-pin"></i></div>
+                        <div class="ctext">
+                            <strong>Address</strong>
+                            <p>D.54/70-A-2, Maulvibagh, Ramkund, Sidhgiribagh, Varanasi, Uttar Pradesh 221010</p>
+                        </div>
+                    </div>
+
+                    <div class="citem">
+                        <div class="cicon"><i class="ti ti-phone"></i></div>
+                        <div class="ctext">
+                            <strong>Phone</strong>
+                            <p>
+                                <a href="tel:+919009007954"
+                                   style="color:inherit;text-decoration:none;">
+                                    +91 900 900 7954
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="citem">
+                        <div class="cicon"><i class="ti ti-mail"></i></div>
+                        <div class="ctext">
+                            <strong>Email</strong>
+                            <p>anandavanam.kashi@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="citem">
+                        <div class="cicon"><i class="ti ti-clock"></i></div>
+                        <div class="ctext">
+                            <strong>Check-in / Check-out</strong>
+                            <p>12:00 PM Check-in • 11:00 AM Check-out</p>
+                        </div>
+                    </div>
+
+                    <div class="citem">
+                        <div class="cicon"><i class="ti ti-brand-youtube"></i></div>
+                        <div class="ctext">
+                            <strong>YouTube</strong>
+                            <p>
+                                <a href="https://www.youtube.com/@AnandaVanamKashi"
+                                   target="_blank"
+                                   style="color:inherit;text-decoration:none;">
+                                    @AnandaVanamKashi
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="citem">
+                        <div class="cicon"><i class="ti ti-brand-instagram"></i></div>
+                        <div class="ctext">
+                            <strong>Instagram</strong>
+                            <p>
+                                <a href="https://www.instagram.com/hotel_anandavanam/"
+                                   target="_blank"
+                                   style="color:inherit;text-decoration:none;">
+                                    @hotel_anandavanam
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-          </div>
 
-          <div class="citem">
-            <div class="cicon"><i class="ti ti-phone"></i></div>
-            <div class="ctext">
-              <strong>Phone</strong>
-              <p>
-                <a href="tel:+919009007954" style="color:inherit;text-decoration:none;">
-                  +91 900 900 7954
+            <!-- RIGHT COLUMN -->
+            <div>
+
+                <a class="map-link"
+                   href="https://www.google.com/maps/place/70GA,+ANANDAVANAM,+D54,+Maulvibagh,+Jahumandi,+Varanasi,+Uttar+Pradesh+221010/data=!4m2!3m1!1s0x398e2f000bd81187:0xbeaecd644bc0f89f!18m1!1e1"
+                   target="_blank">
+
+                    <div class="map-link-icon">
+                        <i class="ti ti-map-2"></i>
+                    </div>
+
+                    <div class="map-link-text">
+                        <strong>View on Google Maps</strong>
+                        <span>Open location in Google Maps</span>
+                    </div>
+
+                    <i class="ti ti-external-link map-link-arrow"></i>
+
                 </a>
-              </p>
-            </div>
-          </div>
 
-          <div class="citem">
-            <div class="cicon"><i class="ti ti-mail"></i></div>
-            <div class="ctext">
-              <strong>Email</strong>
-              <p>anandavanam.kashi@gmail.com</p>
-            </div>
-          </div>
+                <div style="margin-top:18px;padding:22px;background:rgba(201,149,42,.07);border:1px solid rgba(201,149,42,.2);border-radius:8px;">
 
-          <div class="citem">
-            <div class="cicon"><i class="ti ti-clock"></i></div>
-            <div class="ctext">
-              <strong>Check-in / Check-out</strong>
-              <p>12:00 PM check-in · 11:00 AM check-out</p>
+                    <h3 style="font-family:'Cormorant Garamond',serif;color:white;margin-bottom:12px;">
+                        Book via MakeMyTrip
+                    </h3>
+
+                    <p style="font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:18px;">
+                        Check live prices and confirm your stay instantly.
+                    </p>
+
+                    <a href="https://www.makemytrip.com/hotels/hotel-details/?hotelId=202606041602467703"
+                       target="_blank"
+                       class="btn-mmt">
+
+                        <span class="mmt-badge">MMT</span>
+                        Open MakeMyTrip
+
+                    </a>
+
+                </div>
+
+                <div style="margin-top:18px;padding:22px;background:rgba(201,149,42,.07);border:1px solid rgba(201,149,42,.2);border-radius:8px;">
+
+                    <h3 style="font-family:'Cormorant Garamond',serif;color:white;margin-bottom:12px;">
+                        Book via Agoda
+                    </h3>
+
+                    <p style="font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:18px;">
+                        Secure your reservation through Agoda with instant confirmation.
+                    </p>
+
+                    <a href="https://www.agoda.com/en-in/anandavanam/hotel/varanasi-in.html"
+                       target="_blank"
+                       class="btn-mmt">
+
+                        Agoda
+
+                    </a>
+
+                </div>
+
             </div>
-          </div>
 
         </div>
-      </div>
-<!-- RIGHT COLUMN -->
-<div>
 
-  <!-- Google Maps Card -->
-  <a class="map-link"
-    href="https://www.google.com/maps/place/70GA,+ANANDAVANAM,+D54,+Maulvibagh,+Jahumandi,+Varanasi,+Uttar+Pradesh+221010/data=!4m2!3m1!1s0x398e2f000bd81187:0xbeaecd644bc0f89f!18m1!1e1"
-    target="_blank">
+        <!-- FULL WIDTH MAP -->
 
-    <div class="map-link-icon">
-      <i class="ti ti-map-2"></i>
+        <div class="map-wrap" style="margin-top:50px;">
+
+            <iframe
+                title="Anandavanam Hotel Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3123.086525334228!2d82.9978019!3d25.3104959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2f000bd81187%3A0xbeaecd644bc0f89f!2sANANDAVANAM!5e1!3m2!1sen!2sin!4v1781169833831!5m2!1sen!2sin"
+                width="100%"
+                height="450"
+                style="border:0;"
+                loading="lazy"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
     </div>
-
-    <div class="map-link-text">
-      <strong>View on Google Maps</strong>
-      <span>70GA, Maulvibagh, Jahumandi, Varanasi</span>
-    </div>
-
-    <i class="ti ti-external-link map-link-arrow"></i>
-  </a>
-
-  <!-- MakeMyTrip Card 1 -->
-  <div style="margin-top:1rem;padding:1.2rem;background:rgba(201,149,42,.07);border:1px solid rgba(201,149,42,.18);border-radius:6px">
-
-    <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,.9);margin-bottom:.4rem;letter-spacing:.5px">
-      Book via MakeMyTrip
-    </div>
-
-    <p style="font-size:0.8rem;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:.9rem">
-      Check availability, compare room rates, and confirm your reservation instantly through India's leading travel platform.
-    </p>
-
-    <a href="https://www.makemytrip.com/hotels/hotel-details/?hotelId=202606041602467703"
-      target="_blank"
-      style="display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:#e85fa3;text-decoration:none;border:1px solid rgba(216,59,143,.3);padding:9px 16px;border-radius:3px">
-
-      <span class="mmt-badge">MMT</span>
-      Open MakeMyTrip
-    </a>
-  </div>
-
-  <!-- MakeMyTrip Card 2 -->
-  <div style="margin-top:1rem;padding:1.2rem;background:rgba(201,149,42,.07);border:1px solid rgba(201,149,42,.18);border-radius:6px">
-
-    <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,.9);margin-bottom:.4rem;letter-spacing:.5px">
-      Book via Agoda
-    </div>
-
-    <p style="font-size:0.8rem;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:.9rem">
-      Reserve your stay securely with instant booking confirmation and trusted customer support.
-    </p>
-
-    <a href="https://www.agoda.com/en-in/anandavanam/hotel/varanasi-in.html?countryId=35&finalPriceView=1&isShowMobileAppPrice=false&cid=1922885&numberOfBedrooms=&familyMode=false&adults=2&children=0&rooms=1&maxRooms=0&checkIn=2026-06-24&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=1&showReviewSubmissionEntry=false&currencyCode=INR&isFreeOccSearch=false&tag=6f147157-60b8-459f-af1a-9935d44970e9&flightSearchCriteria=%5Bobject+Object%5D&los=1&searchrequestid=321bfa45-a159-4358-a542-70c9fb7c4d94&ds=Kah30JvcL1ejlUGA"
-      target="_blank"
-      style="display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:#e85fa3;text-decoration:none;border:1px solid rgba(216,59,143,.3);padding:9px 16px;border-radius:3px">
-
-      <span class="mmt-badge">Agoda</span>
-      Open Agoda
-    </a>
-  </div>
-
-</div>
-      
-      
-    <!-- FULL WIDTH MAP -->
-    <div class="map-wrap" style="margin-top:2rem;">
-      
-      <iframe
-        title="Anandavanam Hotel location on Google Maps"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3123.086525334228!2d82.9978019!3d25.3104959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2f000bd81187%3A0xbeaecd644bc0f89f!2sANANDAVANAM!5e1!3m2!1sen!2sin!4v1781169833831!5m2!1sen!2sin"
-        width="100%"
-        height="450"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy">
-      </iframe>
-    </div>
-
-  </div>
 </section>
 
 <!-- FOOTER -->
@@ -668,10 +864,46 @@ footer{
     <a href="#amenities-sec" style="font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);text-decoration:none">Amenities</a>
     <a href="#contact-sec" style="font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);text-decoration:none">Contact</a>
   </div>
-  <div style="font-size:0.7rem;color:rgba(255,255,255,.2)">&copy; 2024 Anandavanam Hotel, Varanasi</div>
+  <div style="font-size:0.7rem;color:rgba(255,255,255,.2)">&copy; 2026 Anandavanam Hotel, Varanasi</div>
 </div>
 
 <script>
+  // Full-screen hero slideshow
+const heroSlides = document.querySelectorAll('.hero-slide');
+const heroDots  = document.querySelectorAll('.hero-dot');
+const subtexts  = [
+  'Unwind in elegance — Varanasi awaits',
+  'Premium comfort on the sacred Ganges',
+  'Make memories in the eternal city',
+  'Your perfect holiday starts here',
+  'Experience the garden of bliss'
+];
+let heroIndex = 0, heroTimer;
+
+function goToSlide(n) {
+  heroSlides[heroIndex].classList.remove('active');
+  heroDots[heroIndex].classList.remove('active');
+  heroIndex = (n + heroSlides.length) % heroSlides.length;
+  heroSlides[heroIndex].classList.add('active');
+  heroDots[heroIndex].classList.add('active');
+  document.getElementById('heroSubtext').textContent = subtexts[heroIndex];
+  clearInterval(heroTimer);
+  heroTimer = setInterval(() => changeSlide(1), 4500);
+}
+
+function changeSlide(dir) { goToSlide(heroIndex + dir); }
+heroTimer = setInterval(() => changeSlide(1), 4500);
+  // Slideshow
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.slide-dot');
+let current = 0;
+setInterval(() => {
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+}, 3500);
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     e.preventDefault();
