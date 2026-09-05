@@ -406,135 +406,6 @@ footer{
 .map-link-text span{font-size:0.75rem;color:rgba(255,255,255,.4)}
 .map-link-arrow{margin-left:auto;color:rgba(201,149,42,.6);font-size:14px}
 
-/* ══════════ ANANDAVANAM ASSISTANT CHATBOT ══════════ */
-.av-icon{display:block;flex-shrink:0}
-.av-chat-logo{
-  width:44px;
-  height:44px;
-  object-fit:contain;
-  border-radius:50%;
-  display:block;
-}
-#av-chat-toggle{
-  position:fixed;bottom:24px;right:24px;z-index:999;
-  width:62px;height:62px;border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 30px rgba(201,149,42,.5);
-  transition:transform .25s,box-shadow .25s;
-  color:#fff;font-size:26px;
-}
-#av-chat-toggle:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 36px rgba(201,149,42,.6)}
-#av-chat-toggle .av-close-ic{display:none}
-#av-chat-toggle.open .av-chat-ic{display:none}
-#av-chat-toggle.open .av-close-ic{display:block}
-#av-chat-badge{
-  position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;
-  background:var(--teal2);border:2px solid var(--off);
-}
-
-#av-chat-window{
-  position:fixed;bottom:98px;right:24px;z-index:999;
-  width:380px;max-width:calc(100vw - 32px);
-  height:min(600px,75vh);
-  background:var(--off);
-  border-radius:16px;border:1px solid rgba(201,149,42,.25);
-  box-shadow:0 24px 64px rgba(0,0,0,.28);
-  display:flex;flex-direction:column;overflow:hidden;
-  opacity:0;transform:translateY(16px) scale(.97);pointer-events:none;
-  transition:opacity .22s ease,transform .22s ease;
-}
-#av-chat-window.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-
-.av-chat-header{
-  background:linear-gradient(135deg,#0e0b07 0%,#1a1208 55%,#0d1e18 100%);
-  padding:1.1rem 1.3rem;display:flex;align-items:center;gap:12px;flex-shrink:0;
-  border-bottom:2px solid var(--gold);
-}
-.av-chat-header-icon{
-  width:38px;height:38px;border-radius:50%;flex-shrink:0;overflow:hidden;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;
-}
-.av-chat-header-logo{
-  width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;
-}
-.av-chat-header-text{flex:1;min-width:0}
-.av-chat-header-text h4{
-  font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.15rem;
-  color:#fff;letter-spacing:.5px;line-height:1.2;
-}
-.av-chat-header-text p{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:1px}
-.av-chat-header-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.av-chat-header-actions button{
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
-  color:rgba(255,255,255,.75);width:30px;height:30px;border-radius:50%;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:14px;transition:background .2s;
-}
-.av-chat-header-actions button:hover{background:rgba(255,255,255,.18);color:#fff}
-
-.av-chat-messages{
-  flex:1;overflow-y:auto;padding:1.1rem;display:flex;flex-direction:column;gap:10px;
-  background:var(--off);
-}
-.av-chat-messages::-webkit-scrollbar{width:5px}
-.av-chat-messages::-webkit-scrollbar-thumb{background:rgba(201,149,42,.35);border-radius:4px}
-
-.av-msg{max-width:84%;font-size:.85rem;line-height:1.55;padding:.65rem .9rem;border-radius:14px;word-wrap:break-word;white-space:pre-wrap}
-.av-msg.user{
-  align-self:flex-end;background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#fff;border-bottom-right-radius:4px;
-}
-.av-msg.bot{
-  align-self:flex-start;background:#fff;color:var(--dark);
-  border:1px solid #ede5d4;border-bottom-left-radius:4px;
-}
-.av-typing{align-self:flex-start;display:flex;gap:4px;padding:.7rem .9rem;background:#fff;border:1px solid #ede5d4;border-radius:14px;border-bottom-left-radius:4px}
-.av-typing span{width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.4;animation:av-blink 1.2s infinite}
-.av-typing span:nth-child(2){animation-delay:.2s}
-.av-typing span:nth-child(3){animation-delay:.4s}
-@keyframes av-blink{0%,80%,100%{opacity:.3;transform:scale(.85)}40%{opacity:1;transform:scale(1)}}
-
-/* Guided menu button groups (categories / questions / follow-ups) */
-.av-menu{
-  align-self:stretch;display:flex;flex-direction:column;gap:6px;
-  margin:2px 0 4px;
-}
-.av-menu-btn{
-  display:flex;align-items:center;gap:8px;width:100%;text-align:left;
-  font-family:'Inter',sans-serif;font-size:.82rem;color:var(--mid);
-  background:#fff;border:1px solid var(--gold3);border-radius:10px;
-  padding:.6rem .8rem;cursor:pointer;transition:all .2s;line-height:1.35;
-}
-.av-menu-btn:hover{border-color:var(--gold);background:var(--gold3);color:var(--dark)}
-.av-menu-btn.secondary{
-  border-style:dashed;color:var(--teal);border-color:rgba(30,92,80,.35);
-}
-.av-menu-btn.secondary:hover{background:rgba(30,92,80,.08);border-color:var(--teal)}
-.av-menu.disabled .av-menu-btn{
-  opacity:.4;pointer-events:none;
-}
-
-.av-chat-callbar{
-  padding:.6rem 1.1rem;border-top:1px solid #ede5d4;background:#fff;flex-shrink:0;
-}
-.av-chat-callbar a{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  font-size:.74rem;letter-spacing:1px;text-transform:uppercase;color:var(--teal);
-  border:1px solid rgba(30,92,80,.3);border-radius:50px;padding:8px;text-decoration:none;
-  transition:background .2s;
-}
-.av-chat-callbar a:hover{background:rgba(30,92,80,.08)}
-
-@media (max-width:520px){
-  #av-chat-window{
-    right:16px;left:16px;width:auto;max-width:none;
-    bottom:92px;height:min(560px,72vh);
-  }
-  #av-chat-toggle{bottom:18px;right:18px;width:56px;height:56px;font-size:22px}
-}
 </style>
 
 
@@ -577,7 +448,7 @@ footer{
   </div>
    <div class="hero-slide">
     <img src="sarnath.jpg" alt="Anandavanam Hotel view 4" style=" object-position: top;">
-  </div>
+  </div>">
   </div>
   <!-- <div class="hero-slide">
     <img src="/mnt/user-data/uploads/1000062822.jpg" alt="Anandavanam Hotel view 5">
@@ -997,55 +868,6 @@ footer{
   <div style="font-size:0.7rem;color:rgba(255,255,255,.2)">&copy; 2026 Anandavanam Hotel, Varanasi</div>
 </div>
 
-<!-- ══════════ ANANDAVANAM ASSISTANT CHATBOT ══════════ -->
-<button id="av-chat-toggle" aria-label="Open Anandavanam Assistant chat">
-  <img class="av-chat-logo av-chat-ic" src="chatbot-logo.png" alt="Anandavanam Assistant" onerror="this.style.display='none'">
-  <svg class="av-icon av-close-ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-    <path d="M6 6l12 12M18 6L6 18"/>
-  </svg>
-  <span id="av-chat-badge"></span>
-</button>
-
-<div id="av-chat-window" role="dialog" aria-label="Anandavanam Assistant chat window">
-
-  <div class="av-chat-header">
-    <div class="av-chat-header-icon">
-      <img class="av-chat-header-logo" src="chatbot-logo.png" alt="Anandavanam Assistant" onerror="this.style.display='none'">
-    </div>
-    <div class="av-chat-header-text">
-      <h4>Anandavanam Assistant</h4>
-      <p>How may I help you?</p>
-    </div>
-    <div class="av-chat-header-actions">
-      <button id="av-chat-clear" title="Restart conversation" aria-label="Restart conversation">
-        <svg class="av-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M4 7h16"/>
-          <path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
-          <path d="M6 7l1 12.5A1.5 1.5 0 0 0 8.5 21h7a1.5 1.5 0 0 0 1.5-1.5L18 7"/>
-          <path d="M10 11v6M14 11v6"/>
-        </svg>
-      </button>
-      <button id="av-chat-close" title="Close" aria-label="Close chat">
-        <svg class="av-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-          <path d="M6 6l12 12M18 6L6 18"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <div id="av-chat-messages" class="av-chat-messages"></div>
-
-  <div class="av-chat-callbar">
-    <a href="tel:9009007954">
-      <svg class="av-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M6.5 3.5h3l1.2 4-2 1.6a11 11 0 0 0 5.2 5.2l1.6-2 4 1.2v3a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 5 6.1 1.5 1.5 0 0 1 6.5 3.5Z"/>
-      </svg>
-      Call Hotel: 9009007954
-    </a>
-  </div>
-
-</div>
-
 <script>
   // Full-screen hero slideshow
 const heroSlides = document.querySelectorAll('.hero-slide');
@@ -1072,7 +894,17 @@ function goToSlide(n) {
 
 function changeSlide(dir) { goToSlide(heroIndex + dir); }
 heroTimer = setInterval(() => changeSlide(1), 4500);
-
+  // Slideshow
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.slide-dot');
+let current = 0;
+setInterval(() => {
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+}, 3500);
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     e.preventDefault();
@@ -1080,227 +912,4 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if(t) t.scrollIntoView({behavior:'smooth'});
   });
 });
-
-/* ══════════ ANANDAVANAM ASSISTANT — BUTTON-BASED FAQ CHATBOT ══════════ */
-/* 100% client-side. No API calls, no external requests, no server. */
-(function () {
-  const toggleBtn  = document.getElementById('av-chat-toggle');
-  const windowEl   = document.getElementById('av-chat-window');
-  const closeBtn   = document.getElementById('av-chat-close');
-  const resetBtn   = document.getElementById('av-chat-clear');
-  const messagesEl = document.getElementById('av-chat-messages');
-  const badgeEl    = document.getElementById('av-chat-badge');
-
-  const WELCOME_LINES = [
-    "Welcome to Anandavanam! 👋",
-    "I'm Anandavanam Assistant. I can help you with rooms, amenities, check-in details, nearby attractions, transportation and booking enquiries.",
-    "How may I help you?"
-  ];
-
-  // ── All hotel Q&A data lives here, organised by category. ──
-  // Edit this object to add/change questions and answers — nothing else needs to change.
-  const CATEGORIES = [
-    {
-      id: 'rooms', label: '🛏️ Rooms',
-      questions: [
-        { q: 'What rooms are available?', a: 'Anandavanam offers two room categories: DELUX and SUPER DELUX rooms.' },
-        { q: 'What facilities are included in the rooms?', a: 'Rooms include AC, Wi-Fi, a geyser and toiletries. Complimentary breakfast, lunch and dinner are also provided to all guests.' },
-        { q: 'How can I book a room?', a: 'You can book directly through the MakeMyTrip link on this website, or call us at 9009007954 to check dates and book.' }
-      ]
-    },
-    {
-      id: 'amenities', label: '🏨 Amenities',
-      questions: [
-        { q: 'What amenities does the hotel provide?', a: 'Anandavanam provides AC, Wi-Fi, complimentary breakfast/lunch/dinner, a rooftop hall, huge on-site parking, a geyser, and toiletries.' },
-        { q: 'Is parking available?', a: 'Yes, on-site parking is available for all guests.' },
-        { q: 'Is WiFi available?', a: 'Yes, Wi-Fi is available at the hotel.' }
-      ]
-    },
-    {
-      id: 'checkin', label: '🕐 Check-in & Checkout',
-      questions: [
-        { q: 'What is the check-in time?', a: 'Check-in time is 12 Noon.' },
-        { q: 'What is the checkout time?', a: 'Checkout time is 11 AM.' },
-        { q: 'Do you allow early check-in?', a: 'Early check-in is subject to availability. Please call 9009007954 to check for your travel date.' },
-        { q: 'What is the late checkout policy?', a: 'Late checkout up to 4 PM is charged at half the room rate. After 4 PM, a full-day charge applies.' }
-      ]
-    },
-    {
-      id: 'location', label: '📍 Location & Nearby Places',
-      questions: [
-        { q: 'How far is Kashi Vishwanath Temple?', a: 'Kashi Vishwanath Temple is approximately 1.2 km from Anandavanam.' },
-        { q: 'How far is Dashashwamedh Ghat?', a: 'Dashashwamedh Ghat is approximately 1.2 km from Anandavanam.' },
-        { q: 'How far is Assi Ghat?', a: 'Assi Ghat is approximately 2.5 km from Anandavanam.' },
-        { q: 'How far is Varanasi Railway Station?', a: 'Varanasi Railway Station is approximately 2.5 km from Anandavanam.' },
-        { q: 'How far is the airport?', a: 'The airport is approximately 28 km from Anandavanam.' },
-        { q: 'What other attractions are nearby?', a: 'Nearby places include Dashashwamedh Ghat, Kashi Vishwanath Temple, Khatu Shyam Temple and Godawalia Market. Some attractions are within walking distance.' }
-      ]
-    },
-    {
-      id: 'transport', label: '🚕 Transportation',
-      questions: [
-        { q: 'Do you provide airport pickup?', a: 'Yes, we can arrange airport pickup/drop. Charges are applicable — call 9009007954 for details.' },
-        { q: 'Do you provide railway station pickup?', a: 'Yes, we can arrange railway station pickup/drop. Charges are applicable — call 9009007954 for details.' },
-        { q: 'Can you arrange a boat or taxi?', a: 'Yes, we can arrange boat bookings and taxi bookings for guests. Charges are applicable — call 9009007954 for details.' }
-      ]
-    },
-    {
-      id: 'food', label: '🍛 Food',
-      questions: [
-        { q: 'Is food available at the hotel?', a: 'Yes, complimentary breakfast, lunch and dinner are provided to all guests, all 3 times a day.' },
-        { q: 'What type of food is provided?', a: 'We serve pure South Indian meals only.' }
-      ]
-    },
-    {
-      id: 'policies', label: '📋 Hotel Policies',
-      questions: [
-        { q: 'What is the cancellation policy?', a: 'Free cancellation is available if you cancel 15 days before your check-in date.' },
-        { q: 'Is advance payment required?', a: 'Yes, an advance payment of 25% of the total booking amount is required.' },
-        { q: 'Are pets allowed?', a: 'No, pets are not allowed at the hotel.' },
-        { q: 'Is smoking allowed?', a: 'No, smoking is strictly prohibited.' },
-        { q: 'Is drinking allowed?', a: 'No, drinking (alcohol) is strictly prohibited.' },
-        { q: 'Are unmarried couples allowed?', a: 'No, unmarried couples are not allowed.' },
-        { q: 'Is ID proof required?', a: 'Yes, valid ID proof is required from all guests at check-in.' }
-      ]
-    },
-    {
-      id: 'booking', label: '📞 Booking & Contact',
-      questions: [
-        { q: 'How can I book a room?', a: 'You can book directly through the MakeMyTrip link on this website, or call us at 9009007954.' },
-        { q: 'Do you have live availability?', a: 'For current room availability, please call Anandavanam at 9009007954 or check our MakeMyTrip booking option.' },
-        { q: 'Can I book through MakeMyTrip?', a: 'Yes! Use the MakeMyTrip button on this website to check live rates and book directly.' },
-        { q: 'What is the hotel contact number?', a: 'You can reach Anandavanam at 9009007954.' }
-      ]
-    }
-  ];
-
-  function findCategory(id) {
-    return CATEGORIES.find(c => c.id === id);
-  }
-
-  function scrollToBottom() {
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-  }
-
-  function appendBotText(text) {
-    const div = document.createElement('div');
-    div.className = 'av-msg bot';
-    div.textContent = text;
-    messagesEl.appendChild(div);
-    scrollToBottom();
-    return div;
-  }
-
-  function appendUserText(text) {
-    const div = document.createElement('div');
-    div.className = 'av-msg user';
-    div.textContent = text;
-    messagesEl.appendChild(div);
-    scrollToBottom();
-  }
-
-  // Renders a group of clickable buttons. Once one is clicked, the whole
-  // group is visually disabled so the conversation reads like a transcript.
-  function appendMenu(options) {
-    const wrap = document.createElement('div');
-    wrap.className = 'av-menu';
-    options.forEach(opt => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'av-menu-btn' + (opt.secondary ? ' secondary' : '');
-      btn.textContent = opt.label;
-      btn.addEventListener('click', () => {
-        wrap.classList.add('disabled');
-        opt.onClick();
-      });
-      wrap.appendChild(btn);
-    });
-    messagesEl.appendChild(wrap);
-    scrollToBottom();
-    return wrap;
-  }
-
-  // Brief local "typing" pause before the bot responds — purely visual,
-  // no network activity involved.
-  function botRespond(renderFn) {
-    const typing = document.createElement('div');
-    typing.className = 'av-typing';
-    typing.innerHTML = '<span></span><span></span><span></span>';
-    messagesEl.appendChild(typing);
-    scrollToBottom();
-    setTimeout(() => {
-      typing.remove();
-      renderFn();
-    }, 350);
-  }
-
-  function showMainMenu(withIntro) {
-    if (withIntro) {
-      appendBotText(WELCOME_LINES.join('\n\n'));
-    } else {
-      appendBotText('Sure — here is the main menu. What would you like to know?');
-    }
-    appendMenu(CATEGORIES.map(cat => ({
-      label: cat.label,
-      onClick: () => {
-        appendUserText(cat.label);
-        botRespond(() => showCategoryQuestions(cat));
-      }
-    })));
-  }
-
-  function showCategoryQuestions(cat) {
-    appendBotText('Sure! What would you like to know?');
-    const options = cat.questions.map(item => ({
-      label: item.q,
-      onClick: () => {
-        appendUserText(item.q);
-        botRespond(() => showAnswer(cat, item));
-      }
-    }));
-    options.push({ label: '⬅ Main Menu', secondary: true, onClick: () => {
-      botRespond(() => showMainMenu(false));
-    }});
-    appendMenu(options);
-  }
-
-  function showAnswer(cat, item) {
-    appendBotText(item.a);
-    appendMenu([
-      { label: 'Other ' + cat.label.replace(/^\S+\s/, '') + ' Questions', onClick: () => {
-          botRespond(() => showCategoryQuestions(cat));
-        } },
-      { label: '⬅ Main Menu', secondary: true, onClick: () => {
-          botRespond(() => showMainMenu(false));
-        } },
-      { label: '📞 Call Hotel', secondary: true, onClick: () => {
-          window.location.href = 'tel:9009007954';
-        } }
-    ]);
-  }
-
-  function openChat() {
-    windowEl.classList.add('open');
-    toggleBtn.classList.add('open');
-    badgeEl.style.display = 'none';
-    if (messagesEl.children.length === 0) {
-      showMainMenu(true);
-    }
-  }
-  function closeChat() {
-    windowEl.classList.remove('open');
-    toggleBtn.classList.remove('open');
-  }
-  function toggleChat() {
-    windowEl.classList.contains('open') ? closeChat() : openChat();
-  }
-  function resetChat() {
-    messagesEl.innerHTML = '';
-    showMainMenu(true);
-  }
-
-  toggleBtn.addEventListener('click', toggleChat);
-  closeBtn.addEventListener('click', closeChat);
-  resetBtn.addEventListener('click', resetChat);
-})();
 </script>
